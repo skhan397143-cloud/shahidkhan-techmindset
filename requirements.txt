@@ -1,4 +1,10 @@
 streamlit
 g4f
-gTTS
-sounddevice
+yfinance
+numpy
+pandas
+plotly
+scikit-learn
+
+
+
