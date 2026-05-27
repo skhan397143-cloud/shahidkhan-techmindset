@@ -1,10 +1,5 @@
 import streamlit as st
 import g4f
-import sounddevice as sd
-import wavio
-from gtts import gTTS
-import os
-import speech_recognition as sr
 import yfinance as yf
 import numpy as np
 import pandas as pd
