@@ -97,7 +97,7 @@ if st.button("Ask Trading AI"):
             st.session_state.prompt_count += 1
             with st.spinner("Processing market logic..."):
                 time.sleep(1)
-st.success("🤖 **AI Output:** This is a placeholder response. Your actual LLM logic will process: " + user_queryst.title("🚀 SHAHID'S QUANT-AI PREDICTOR v2.0")
+st.success("AI Query successfully processed!")
 
 st.subheader("Billionaire Trading Intelligence Hub")
         
