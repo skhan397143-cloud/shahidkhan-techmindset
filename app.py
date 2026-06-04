@@ -7,6 +7,29 @@ import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression 
 
 st.set_page_config(page_title="AI Stock Predictor shahid_khan", layout="wide")
+# --- ADVANCED UI CUSTOMIZATION VIA STREAMLIT MARKDOWN ---
+st.markdown("""
+    <style>
+    /* Setting a premium dark background and high-contrast text color */
+    .stApp {
+        background-color: #0B0E14 !important;
+        color: #E2E8F0 !important;
+    }
+    
+    /* Transforming the sidebar background for a modern layout */
+    section[data-testid="stSidebar"] {
+        background-color: #111622 !important;
+        border-right: 1px solid #1E293B !important;
+    }
+    
+    /* Enhancing user input boxes with a slick terminal style */
+    .stTextInput>div>div>input {
+        background-color: #1A202C !important;
+        color: #00FFCC !important;
+        border: 1px solid #2D3748 !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 st.title("🚀 SHAHID'S QUANT-AI PREDICTOR v2.0")
 st.subheader("Billionaire Trading Intelligence Hub")
