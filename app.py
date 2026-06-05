@@ -89,7 +89,7 @@ selected_stock_label = st.selectbox(
 )
 
 # This variable automatically holds the correct ticker symbol (e.g., TSLA or RELIANCE.NS)
-user_ticker = ticker_directory[selected_st
+user_ticker = ticker_directory[selected_stock_label]
 # 1. LEGAL & SEBI COMPLIANCE DISCLAIMER
 # ==========================================
 st.markdown("---")
