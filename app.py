@@ -32,37 +32,36 @@ st.markdown("""
 """, unsafe_allow_html=True)
 import time  
 # ==========================================
-# 1. SECURE ENTERPRISE LOGIN SYSTEM
+# 1. SECURE ENTERPRISE LOGIN SYSTEM (PRE-FILLED FOR BUYERS)
 # ==========================================
 st.sidebar.header("🔒 Enterprise Secure Access")
 
-# Initialize login status in session state
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 if not st.session_state.logged_in:
     st.sidebar.subheader("Demo Client Login")
+    
+    # We are pre-filling the username and password so buyers don't have to type anything!
     username = st.sidebar.text_input("Username", value="admin")
-    password = st.sidebar.text_input("Password", type="password")
+    password = st.sidebar.text_input("Password", value="b2bpass2026", type="password")
     
     if st.sidebar.button("Login to AI Dashboard"):
-        # You can share these credentials with potential buyers (Groww/Zerodha teams)
-        if username == "admin" and password == "b2bpass2026":
+        # Direct check with stripped strings to avoid any space/indentation errors
+        if username.strip() == "admin" and password.strip() == "b2bpass2026":
             st.session_state.logged_in = True
             st.sidebar.success("🔑 Access Granted!")
             st.rerun()
         else:
             st.sidebar.error("❌ Invalid Credentials")
             
-    st.warning("Please log in from the sidebar to view live AI predictions.")
-    st.stop()  # Stops the app from running further if not logged in
+    st.warning("👉 Please click the 'Login to AI Dashboard' button in the sidebar to unlock the application.")
+    st.stop()
 else:
     st.sidebar.success("⚡ Session Active: Connected to Secure Open-Source Pipeline")
     if st.sidebar.button("Logout"):
         st.session_state.logged_in = False
         st.rerun()
-
-
 # ==========================================
 # 2. FOOLPROOF STOCK TICKER HELPER (No More Typing Errors)
 # ==========================================
