@@ -31,8 +31,65 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 import time  
+# ==========================================
+# 1. SECURE ENTERPRISE LOGIN SYSTEM
+# ==========================================
+st.sidebar.header("🔒 Enterprise Secure Access")
+
+# Initialize login status in session state
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if not st.session_state.logged_in:
+    st.sidebar.subheader("Demo Client Login")
+    username = st.sidebar.text_input("Username", value="admin")
+    password = st.sidebar.text_input("Password", type="password")
+    
+    if st.sidebar.button("Login to AI Dashboard"):
+        # You can share these credentials with potential buyers (Groww/Zerodha teams)
+        if username == "admin" and password == "b2bpass2026":
+            st.session_state.logged_in = True
+            st.sidebar.success("🔑 Access Granted!")
+            st.rerun()
+        else:
+            st.sidebar.error("❌ Invalid Credentials")
+            
+    st.warning("Please log in from the sidebar to view live AI predictions.")
+    st.stop()  # Stops the app from running further if not logged in
+else:
+    st.sidebar.success("⚡ Session Active: Connected to Secure Open-Source Pipeline")
+    if st.sidebar.button("Logout"):
+        st.session_state.logged_in = False
+        st.rerun()
+
 
 # ==========================================
+# 2. FOOLPROOF STOCK TICKER HELPER (No More Typing Errors)
+# ==========================================
+st.header("🔍 Smart Stock Analysis Engine")
+
+# Auto-mapping popular Indian and Global stocks to prevent user errors
+ticker_directory = {
+    "Reliance Industries (NSE)": "RELIANCE.NS",
+    "Tata Consultancy Services (TCS)": "TCS.NS",
+    "HDFC Bank (NSE)": "HDFCBANK.NS",
+    "Infosys (NSE)": "INFY.NS",
+    "Nifty 50 Index": "^NSEI",
+    "Tesla Inc. (NASDAQ)": "TSLA",
+    "Apple Inc. (NASDAQ)": "AAPL",
+    "NVIDIA Corporation": "NVDA",
+    "Microsoft Corporation": "MSFT"
+}
+
+# Instead of typing manually, user selects from a clean dropdown
+selected_stock_label = st.selectbox(
+    "Select or Search a Stock Ticker (with correct Yahoo Finance format):",
+    options=list(ticker_directory.keys()),
+    index=0
+)
+
+# This variable automatically holds the correct ticker symbol (e.g., TSLA or RELIANCE.NS)
+user_ticker = ticker_directory[selected_st# ==========================================
 # 1. LEGAL & SEBI COMPLIANCE DISCLAIMER
 # ==========================================
 st.markdown("---")
