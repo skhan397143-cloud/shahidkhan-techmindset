@@ -32,7 +32,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 import time  
 # ==========================================
-# 1. SECURE ENTERPRISE LOGIN SYSTEM (PRE-FILLED FOR BUYERS)
+# 1. SECURE ENTERPRISE LOGIN SYSTEM (WITH CLEAR INSTRUCTIONS)
 # ==========================================
 st.sidebar.header("🔒 Enterprise Secure Access")
 
@@ -40,14 +40,17 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 if not st.session_state.logged_in:
-    st.sidebar.subheader("Demo Client Login")
+    # 📢 यह मैसेज यूज़र को साफ-साफ समझा देगा कि क्या करना है
+    st.sidebar.info(
+        "💡 **IMPORTANT NOTE:** Username & Password are already pre-filled for your convenience. "
+        "You do NOT need to type anything. Just click the **'Login to AI Dashboard'** button below to unlock the app!"
+    )
     
-    # We are pre-filling the username and password so buyers don't have to type anything!
+    st.sidebar.subheader("Demo Client Login")
     username = st.sidebar.text_input("Username", value="admin")
     password = st.sidebar.text_input("Password", value="b2bpass2026", type="password")
     
     if st.sidebar.button("Login to AI Dashboard"):
-        # Direct check with stripped strings to avoid any space/indentation errors
         if username.strip() == "admin" and password.strip() == "b2bpass2026":
             st.session_state.logged_in = True
             st.sidebar.success("🔑 Access Granted!")
@@ -62,6 +65,7 @@ else:
     if st.sidebar.button("Logout"):
         st.session_state.logged_in = False
         st.rerun()
+
 # ==========================================
 # 2. FOOLPROOF STOCK TICKER HELPER (No More Typing Errors)
 # ==========================================
