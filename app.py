@@ -430,11 +430,43 @@ if current_vol > avg_vol:
 if prediction > current_price:
     buy_score += 25
     reasons.append("✅ AI Predicts Uptrend")
-
 st.metric("AI Buy Probability", f"{buy_score}%")
+confidence = min(95, max(50, buy_score + 20))
 
+st.metric("AI Confidence", f"{confidence}%")
+if confidence >= 85:
+    st.success("🟢 Enterprise Grade Confidence")
+elif confidence >= 70:
+    st.info("🟡 Good Confidence")
+else:
+    st.warning("🔴 Low Confidence")
+st.markdown("---")
+st.header("🎯 AI Recommendation")
+
+if buy_score >= 75:
+    st.success("✅ STRONG BUY")
+elif buy_score >= 50:
+    st.info("🟡 BUY")
+elif buy_score >= 25:
+    st.warning("⚠️ HOLD")
+else:
+    st.error("❌ SELL")
 for reason in reasons:
     st.write(reason)
+
+st.markdown("---")
+st.header("⚠️ AI Risk Score")
+
+risk = 100 - buy_score
+
+st.metric("Risk Score", f"{risk}%")
+
+if risk < 30:
+    st.success("🟢 Low Risk")
+elif risk < 70:
+    st.warning("🟡 Medium Risk")
+else:
+    st.error("🔴 High Risk")
 if accuracy > 70:
    st.success("🔥 High Confidence: Trend majboot hai!")
 else:
