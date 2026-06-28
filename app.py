@@ -409,6 +409,32 @@ elif prediction < float(data['Close'].iloc[-1]) and accuracy > 60:
         # WAIT SIGNAL: Jab AI khud sure na ho
 else:
             st.info("✋ **WAIT:** AI abhi pakka nahi hai (Low Confidence). Sideways market mein trade mat karo.")
+st.markdown("---")
+st.header("🧠 AI Decision Engine")
+
+buy_score = 0
+reasons = []
+
+if rsi < 30:
+    buy_score += 25
+    reasons.append("✅ RSI is Oversold")
+
+if current_price > data["MA20"].iloc[-1]:
+    buy_score += 25
+    reasons.append("✅ Price Above MA20")
+
+if current_vol > avg_vol:
+    buy_score += 25
+    reasons.append("✅ High Volume")
+
+if prediction > current_price:
+    buy_score += 25
+    reasons.append("✅ AI Predicts Uptrend")
+
+st.metric("AI Buy Probability", f"{buy_score}%")
+
+for reason in reasons:
+    st.write(reason)
 if accuracy > 70:
    st.success("🔥 High Confidence: Trend majboot hai!")
 else:
