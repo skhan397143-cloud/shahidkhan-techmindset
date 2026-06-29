@@ -6,7 +6,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression 
 import requests
-NEWS_API_KEY = st.secrets["NEWS_API_KEY"]
+NEWS_API_KEY = "84a3d22fbd50413abf89a31e60ae1c69"
 
 st.set_page_config(page_title="AI Stock Predictor shahid_khan", layout="wide")
 # --- ADVANCED UI CUSTOMIZATION VIA STREAMLIT MARKDOWN ---
