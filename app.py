@@ -175,9 +175,9 @@ with st.sidebar:
     st.success("Developer: Shahid Khan")
     st.write("-----")
     st.subheader("⚙️ Settings")
-   dark_mode = st.toggle("Dark Mode", value=True)
-   show_news = st.toggle("Show AI News", value=True)
-   voice_assistant = st.toggle("Voice Assistant", value=True)
+    dark_mode = st.toggle("Dark Mode", value=True)
+    show_news = st.toggle("Show AI News", value=True)
+    voice_assistant = st.toggle("Voice Assistant", value=True)
 # --- 🤖 SHAHID'S AI ASSISTANT ---
     st.write("---")
     st.subheader("💬 AI Assistant")
