@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression 
+import requests
+NEWS_API_KEY = st.secrets["NEWS_API_KEY"]
 
 st.set_page_config(page_title="AI Stock Predictor shahid_khan", layout="wide")
 # --- ADVANCED UI CUSTOMIZATION VIA STREAMLIT MARKDOWN ---
@@ -171,7 +173,12 @@ with st.sidebar:
     st.write("🔹 **WAIT:** Market confusing hai, sabr karo.")
     st.write("---")
     st.success("Developer: Shahid Khan")
-    # --- 🤖 SHAHID'S AI ASSISTANT ---
+    st.write("-----")
+    st.subheader("⚙️ Settings")
+   dark_mode = st.toggle("Dark Mode", value=True)
+   show_news = st.toggle("Show AI News", value=True)
+   voice_assistant = st.toggle("Voice Assistant", value=True)
+# --- 🤖 SHAHID'S AI ASSISTANT ---
     st.write("---")
     st.subheader("💬 AI Assistant")
         
@@ -410,6 +417,24 @@ elif prediction < float(data['Close'].iloc[-1]) and accuracy > 60:
 else:
             st.info("✋ **WAIT:** AI abhi pakka nahi hai (Low Confidence). Sideways market mein trade mat karo.")
 st.markdown("---")
+if show_news:
+    st.markdown("---")
+    st.subheader("📰 Live Market News")
+
+    url = f"https://newsapi.org/v2/everything?q={ticker}&language=en&sortBy=publishedAt&apiKey={NEWS_API_KEY}"
+
+    try:
+        response = requests.get(url)
+        news = response.json()
+
+        if "articles" in news:
+            for article in news["articles"][:5]:
+                st.write("### " + article["title"])
+                st.write(article["source"]["name"])
+                st.write(article["url"])
+                st.markdown("---")
+    except Exception as e:
+        st.error(f"News Error: {e}")
 st.header("🧠 AI Decision Engine")
 
 buy_score = 0
