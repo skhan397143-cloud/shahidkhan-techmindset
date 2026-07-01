@@ -88,14 +88,14 @@ ticker_directory = {
 
 # Instead of typing manually, user selects from a clean dropdown
 selected_stock_label = st.selectbox(
-ticker =stock_options[selected_stock_lable]
-    "Select or Search a Stock Ticker (with correct Yahoo Finance format):",
+"Select or Search a Stock Ticker (with correct Yahoo Finance format):",
     options=list(ticker_directory.keys()),
     index=0
 )
 
 # This variable automatically holds the correct ticker symbol (e.g., TSLA or RELIANCE.NS)
 user_ticker = ticker_directory[selected_stock_label]
+ticker = user_ticker
 # 1. LEGAL & SEBI COMPLIANCE DISCLAIMER
 # ==========================================
 st.markdown("---")
