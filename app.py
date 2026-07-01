@@ -88,6 +88,7 @@ ticker_directory = {
 
 # Instead of typing manually, user selects from a clean dropdown
 selected_stock_label = st.selectbox(
+ticker =stock_options[selected_stock_lable]
     "Select or Search a Stock Ticker (with correct Yahoo Finance format):",
     options=list(ticker_directory.keys()),
     index=0
@@ -420,8 +421,9 @@ st.markdown("---")
 if show_news:
     st.markdown("---")
     st.subheader("📰 Live Market News")
-
-    url = f"https://newsapi.org/v2/everything?q={ticker}&language=en&sortBy=publishedAt&apiKey={NEWS_API_KEY}"
+ticker = user_ticker
+print(ticker)
+url = f"https://newsapi.org/v2/everything?q={ticker}&language=en&sortBy=publishedAt&apiKey={NEWS_API_KEY}"
 
     try:
         response = requests.get(url)
