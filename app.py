@@ -426,11 +426,11 @@ print(ticker)
 url = f"https://newsapi.org/v2/everything?q={ticker}&language=en&sortBy=publishedAt&apiKey={NEWS_API_KEY}"
 
 try:
-        response = requests.get(url)
-        news = response.json()
+    response = requests.get(url)
+    news = response.json()
 
-        if "articles" in news:
-            for article in news["articles"][:5]:
+    if "articles" in news and news["articles"]:
+        for article in news["articles"][:5]:
                 st.write("### " + article["title"])
                 st.write(article["source"]["name"])
                 st.write(article["url"])
