@@ -425,7 +425,7 @@ ticker = user_ticker
 print(ticker)
 url = f"https://newsapi.org/v2/everything?q={ticker}&language=en&sortBy=publishedAt&apiKey={NEWS_API_KEY}"
 
-    try:
+try:
         response = requests.get(url)
         news = response.json()
 
