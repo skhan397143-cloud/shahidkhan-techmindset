@@ -429,14 +429,15 @@ try:
     response = requests.get(url)
     news = response.json()
 
-    if "articles" in news and news["articles"]:
+    if "articles" in news:
         for article in news["articles"][:5]:
-                st.write("### " + article["title"])
-                st.write(article["source"]["name"])
-                st.write(article["url"])
-                st.markdown("---")
-    except Exception as e:
-        st.error(f"News Error: {e}")
+            st.write("### " + article["title"])
+            st.write(article["source"]["name"])
+            st.write(article["url"])
+            st.markdown("---")
+
+except Exception as e:
+    st.error(f"News Error: {e}")
 st.header("🧠 AI Decision Engine")
 
 buy_score = 0
