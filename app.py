@@ -7,6 +7,10 @@ import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression 
 import requests
 NEWS_API_KEY = "84a3d22fbd50413abf89a31e60ae1c69"
+@st.cache_data(ttl=300)
+def load_stock_data(ticker):
+    stock = yf.Ticker(ticker)
+    return stock.history(period="1y")
 
 st.set_page_config(page_title="AI Stock Predictor shahid_khan", layout="wide")
 # --- ADVANCED UI CUSTOMIZATION VIA STREAMLIT MARKDOWN ---
@@ -306,8 +310,17 @@ if not name:
 
 # Ab ye purana wala code chalne do
 stock = yf.Ticker(name)
-data = stock.history(period="1y")
- # Isse 'data' poore code ke liye fix ho jayega
+try:
+    data = stock.history(period="1y")
+
+    if data.empty:
+        st.error("No market data found. Please try again later.")
+        st.stop()
+
+except Exception as e:
+    st.error(f"Yahoo Finance Error: {e}")
+    st.stop()
+  # Isse 'data' poore code ke liye fix ho jayega
 st.session_state['market_data'] = data
 if data is None or data.empty:
         st.error("❌ Stock not found")
