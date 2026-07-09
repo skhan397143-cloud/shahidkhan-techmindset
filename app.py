@@ -53,16 +53,18 @@ if not st.session_state.logged_in:
     )
     
     st.sidebar.subheader("Demo Client Login")
-    username = st.sidebar.text_input("Username", value="admin")
-    password = st.sidebar.text_input("Password", value="b2bpass2026", type="password")
-    
-    if st.sidebar.button("Login to AI Dashboard"):
-        if username.strip() == "admin" and password.strip() == "b2bpass2026":
-            st.session_state.logged_in = True
-            st.sidebar.success("🔑 Access Granted!")
-            st.rerun()
-        else:
-            st.sidebar.error("❌ Invalid Credentials")
+    username = st.sidebar.text_input("Username")
+password = st.sidebar.text_input("Password", type="password")
+
+if st.sidebar.button("Login"):
+    if username == "demo" and password == "demo123":
+        st.session_state.logged_in = True
+        st.sidebar.success("Login Successful")
+        st.rerun()
+    else:
+        st.sidebar.error("Wrong Username or Password")
+    else:
+        st.sidebar.error("❌ Invalid Credentials")
             
     st.warning("👉 Please click the 'Login to AI Dashboard' button in the sidebar to unlock the application.")
     st.stop()
