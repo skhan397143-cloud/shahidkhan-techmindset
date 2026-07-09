@@ -63,8 +63,8 @@ if st.sidebar.button("Login"):
         st.rerun()
     else:
         st.sidebar.error("Wrong Username or Password")
-    else:
-        st.sidebar.error("❌ Invalid Credentials")
+        else:
+            st.sidebar.error("❌ Invalid Credentials")
             
     st.warning("👉 Please click the 'Login to AI Dashboard' button in the sidebar to unlock the application.")
     st.stop()
