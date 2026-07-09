@@ -51,22 +51,23 @@ if not st.session_state.logged_in:
         "💡 **IMPORTANT NOTE:** Username & Password are already pre-filled for your convenience. "
         "You do NOT need to type anything. Just click the **'Login to AI Dashboard'** button below to unlock the app!"
     )
-    
-    st.sidebar.subheader("Demo Client Login")
-    username = st.sidebar.text_input("Username")
+    st.sidebar.subheader("Account Login")
+
+username = st.sidebar.text_input("Email / Username")
 password = st.sidebar.text_input("Password", type="password")
 
 if st.sidebar.button("Login"):
-    if username == "demo" and password == "demo123":
+    if username and password:
         st.session_state.logged_in = True
         st.sidebar.success("Login Successful")
         st.rerun()
     else:
-        st.sidebar.error("Wrong Username or Password")
-        
-    st.warning("👉 Please click the 'Login to AI Dashboard' button in the sidebar to unlock the application.")
+        st.sidebar.error("Enter username and password")
+
+if not st.session_state.logged_in:
+    st.warning("Please login to access dashboard")
     st.stop()
-else:
+    else:
     st.sidebar.success("⚡ Session Active: Connected to Secure Open-Source Pipeline")
     if st.sidebar.button("Logout"):
         st.session_state.logged_in = False
