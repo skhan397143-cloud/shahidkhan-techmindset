@@ -67,7 +67,7 @@ if st.sidebar.button("Login"):
 if not st.session_state.logged_in:
     st.warning("Please login to access dashboard")
     st.stop()
-    else:
+else:
     st.sidebar.success("⚡ Session Active: Connected to Secure Open-Source Pipeline")
     if st.sidebar.button("Logout"):
         st.session_state.logged_in = False
