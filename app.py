@@ -6,7 +6,22 @@ import pandas as pd
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression 
 import requests
+import rqlite3
+import hashlib
 NEWS_API_KEY = "84a3d22fbd50413abf89a31e60ae1c69"
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
+
+conn = sqlite3.connect("users.db", check_same_thread=False)
+cursor = conn.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS users(
+    username TEXT PRIMARY KEY,
+    password TEXT
+)
+""")
+conn.commit()
 @st.cache_data(ttl=300)
 def load_stock_data(ticker):
     stock = yf.Ticker(ticker)
