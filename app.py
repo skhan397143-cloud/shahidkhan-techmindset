@@ -6,7 +6,6 @@ import pandas as pd
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression 
 import requests
-import rqlite3
 import hashlib
 NEWS_API_KEY = "84a3d22fbd50413abf89a31e60ae1c69"
 def hash_password(password):
