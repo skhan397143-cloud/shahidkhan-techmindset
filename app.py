@@ -6,21 +6,24 @@ import pandas as pd
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression 
 import requests
-import hashlib
 NEWS_API_KEY = "84a3d22fbd50413abf89a31e60ae1c69"
-def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
 
-conn = sqlite3.connect("users.db", check_same_thread=False)
-cursor = conn.cursor()
+if not st.session_state.logged_in:
+    st.title("🔐 AI Stock Predictor Login")
 
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS users(
-    username TEXT PRIMARY KEY,
-    password TEXT
-)
-""")
-conn.commit()
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+
+    if st.button("Login"):
+        if username == "shahid" and password == "12345":
+            st.session_state.logged_in = True
+            st.success("Login Successful")
+            st.rerun()
+        else:
+            st.error("Wrong username or password")
+            st.stop()
 @st.cache_data(ttl=300)
 def load_stock_data(ticker):
     stock = yf.Ticker(ticker)
