@@ -566,13 +566,29 @@ st.header("🚀 Shahid's Intelligence Hub")
 col1, col2, col3 = st.columns(3)
 # Defining data for the boxes below
 # --- PEHLE SARA CALCULATION KARO (Line 122 ke upar) ---
-
-
-        # --- AB SCREEN PAR DIKHAO (Jo pehle se likha hai) ---
+# --- AB SCREEN PAR DIKHAO (Jo pehle se likha hai) ---
 st.markdown("---")
 st.header("🚀 Shahid's Intelligence Hub")
 st.subheader(f"Current Market Price: ₹{current_price:,.2f}")
 st.info(f"AI Prediction for tomorrow: ₹{prediction:,.2f}")
+st.subheader("🤖 AI Analysis")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("Current Price", f"{current_price:,.2f}")
+
+with col2:
+    st.metric("Predicted Price", f"{prediction:,.2f}")
+
+with col3:
+    difference = ((prediction-current_price)/current_price)*100
+    st.metric("Expected Move", f"{difference:.2f}%")
+
+if prediction > current_price:
+    st.success("📈 Trend: Bullish")
+else:
+    st.warning("📉 Trend: Bearish")
 # --- 💰 SHAHID'S BILLIONAIRE RISK CALCULATOR ---
 st.markdown("---")
 st.header("💎 Shahid's Billionaire Strategy")
