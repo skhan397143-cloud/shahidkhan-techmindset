@@ -17,9 +17,9 @@ if not st.session_state.logged_in:
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
-        if username == "shahid khan" and password == "12345":
-            st.session_state.logged_in = True
-            st.success("Login Successful")
+        if username == "shahid" and password == "12345":
+            st.session_state[:logged_in] = True
+            st.success("login successful")
             st.rerun()
         else:
             st.error("Wrong username or password")
