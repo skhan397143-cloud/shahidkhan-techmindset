@@ -18,7 +18,6 @@ if not st.session_state.logged_in:
 
     if st.button("Login"):
         if username == "shahid" and password == "12345":
-            st.session_state[:logged_in] = True
             st.success("login successful")
             st.rerun()
         else:
