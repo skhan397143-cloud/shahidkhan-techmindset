@@ -415,18 +415,34 @@ fig = go.Figure(data=[go.Candlestick(
         # 1. Moving Average calculate karo (Nayi intelligence)
 data['MA20'] = data['Close'].rolling(window=20).mean()
 df_ml = data[['Close', 'MA20']].dropna() # Khali rows hatao
-        
-        # 2. Data ko ML ke layak banana
-y = df_ml['Close'].values.reshape(-1, 1)
-X = np.arange(len(y)).reshape(-1, 1)
-y = data['Close'].values.reshape(-1, 1)
-X = np.arange(len(y)).reshape(-1, 1)
+# AI Features
+data["MA20"] = data["Close"].rolling(20).mean()
 
-        # AI Model ko training dena
+delta = data["Close"].diff()
+gain = delta.clip(lower=0)
+loss = -delta.clip(upper=0)
+
+rs = gain.rolling(14).mean() / loss.rolling(14).mean()
+data["RSI"] = 100 - (100 / (1 + rs))
+
+data = data.dropna()
+
+X = data[["MA20", "RSI", "Volume"]]
+y = data["Close"]
+
 model = LinearRegression()
 model.fit(X, y)
 
-        # Kal (Next Day) ka prediction nikalna
+next_day = np.array([[
+    data["MA20"].iloc[-1],
+    data["RSI"].iloc[-1],
+    data["Volume"].iloc[-1]
+]])
+
+prediction = model.predict(next_day)[0]
+
+accuracy = model.score(X, y) * 100       
+# Kal (Next Day) ka prediction nikalna
 next_day = np.array([[len(y)]])
 prediction = model.predict(next_day)[0][0]
 # AI ka Confidence Level (Accuracy) nikalna
