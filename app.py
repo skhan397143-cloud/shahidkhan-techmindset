@@ -441,11 +441,7 @@ next_day = np.array([[
 ]])
 
 prediction = model.predict(next_day)[0]
-
 accuracy = model.score(X, y) * 100       
-# Kal (Next Day) ka prediction nikalna
-next_day = np.array([[len(y)]])
-prediction = model.predict(next_day)[0][0]
 # AI ka Confidence Level (Accuracy) nikalna
 accuracy = model.score(X, y) * 100
 st.write(f"🎯 **AI Confidence Score:** {accuracy:.2f}%")
