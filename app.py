@@ -368,6 +368,7 @@ data["MA50"] = close.rolling(50).mean()
 
     # --- 3. PRICE DATA NIKALO ---
 current_price = float(close.iloc[-1])
+current_price = float(data["Close"].dropna().iloc[-1])
 yesterday_price = float(close.iloc[-2])
     # --- VOLUME TREND (Yellow line for fix ok) ---
 avg_vol = data["Volume"].mean()
@@ -444,6 +445,8 @@ next_day = np.array([[
 ]])
 
 prediction = model.predict(next_day)[0]
+prediction = float(prediction)
+difference = prediction - current_price
 accuracy = model.score(X, y) * 100       
 # AI ka Confidence Level (Accuracy) nikalna
 accuracy = model.score(X, y) * 100
