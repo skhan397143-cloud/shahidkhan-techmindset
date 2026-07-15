@@ -328,6 +328,7 @@ if not name:
 
 # Ab ye purana wala code chalne do
 stock = yf.Ticker(name)
+info = stock.fast_info
 try:
     data = stock.history(period="1y")
 
@@ -367,8 +368,8 @@ data["MA20"] = close.rolling(20).mean()
 data["MA50"] = close.rolling(50).mean()
 
     # --- 3. PRICE DATA NIKALO ---
-current_price = float(close.iloc[-1])
 current_price = float(data["Close"].dropna().iloc[-1])
+current_price = round(current_price, 2)
 yesterday_price = float(close.iloc[-2])
     # --- VOLUME TREND (Yellow line for fix ok) ---
 avg_vol = data["Volume"].mean()
