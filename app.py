@@ -358,8 +358,11 @@ prediction = current_price + jump_factor
 difference = prediction - current_price
 # --- 1. PEHLE DATA SET KARO ---
 close = data['Close']
-    
-    # --- 2. INDICATORS CALCULATE KARO ---
+if close.isna().all():
+    st.error("Stock data not available")
+    st.stop()
+close = close.dropna()
+# --- 2. INDICATORS CALCULATE KARO ---
 data["MA20"] = close.rolling(20).mean()
 data["MA50"] = close.rolling(50).mean()
 
