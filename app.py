@@ -580,8 +580,7 @@ st.write(fig)
 # --- 💎 ADVANCED BILLIONAIRE DASHBOARD ---
 st.markdown("---")
 st.header("🚀 Shahid's Intelligence Hub")
-        
-        # 1. Row of Metrics (Boxes mein data chamkega)
+# 1. Row of Metrics (Boxes mein data chamkega)
 col1, col2, col3 = st.columns(3)
 # Defining data for the boxes below
 # --- PEHLE SARA CALCULATION KARO (Line 122 ke upar) ---
@@ -589,6 +588,7 @@ col1, col2, col3 = st.columns(3)
 st.markdown("---")
 st.header("🚀 Shahid's Intelligence Hub")
 st.subheader(f"Current Market Price: ₹{current_price:,.2f}")
+st.caption("🔄 Live Price • Yahoo Finance • Real-time market data (may differ slightly from Google)")
 st.info(f"AI Prediction for tomorrow: ₹{prediction:,.2f}")
 st.subheader("🤖 AI Analysis")
 
@@ -636,6 +636,20 @@ st.markdown("---")
 st.header("🚀 Shahid's Intelligence Hub")
 st.subheader(f"Current Market Price: ₹{current_price:,.2f}")
 st.info(f"AI Prediction for tomorrow: ₹{prediction:,.2f}")
+previous_close = float(data["Close"].iloc[-2])
+
+st.metric("📅 Previous Close", f"₹{previous_close:,.2f}")
+
+change = current_price - previous_close
+change_percent = (change / previous_close) * 100
+
+st.metric(
+    "📈 Today's Change",
+    f"{change:+.2f}",
+    f"{change_percent:+.2f}%"
+)
+
+st.caption("🔄 Live price from Yahoo Finance (may differ slightly from Google due to real-time market updates).")
 # 3. Profit Calculator (Billionaire Mindset #
 with st.expander("💰 Calculate Your Potential Profit"):
             invest = st.number_input("If you invest (₹/$):", value=10000)
