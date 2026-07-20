@@ -344,7 +344,10 @@ st.session_state['market_data'] = data
 if data is None or data.empty:
         st.error("❌ Stock not found")
         st.stop()
-current_price = float(data['Close'].iloc[-1])        
+current_price = float(data['Close'].iloc[-1])
+support = data["Low"].tail(20).min()
+resistance = data["High"].tail(20).max()
+risk_reward = (resistance - current_price) / max(current_price - support, 0.01)
 # ✅ FINAL CALCULATION (YAHI ADD KAR)
 
 volatility = data['Close'].std()
@@ -665,6 +668,19 @@ st.write(f"### Predicted Return: ₹{profit:,.2f}")
 st.caption("Disclaimer: AI predictions are based on patterns, not guarantees.")
     # --- 🎯 TARGET LOGIC (Big Jump ₹543 to ₹789) ---
 st.subheader("🎯 AI Next Day Target")
+st.markdown("---")
+st.subheader("🛡️ Support & Resistance")
+
+c1, c2, c3 = st.columns(3)
+
+with c1:
+    st.metric("Support", f"₹{support:.2f}")
+
+with c2:
+    st.metric("Resistance", f"₹{resistance:.2f}")
+
+with c3:
+    st.metric("Risk / Reward", f"{risk_reward:.2f}")
 previous_close = float(data["Close"].iloc[-2])
 
 st.metric("📅 Previous Close", f"₹{previous_close:,.2f}")
