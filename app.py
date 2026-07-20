@@ -693,7 +693,13 @@ st.metric(
     f"{change:+.2f}",
     f"{change_percent:+.2f}%"
 )
+st.markdown("---")
+st.subheader("📊 Market Summary")
 
+if change > 0:
+    st.success(f"🟢 Stock is up by {change_percent:.2f}% from yesterday.")
+else:
+    st.error(f"🔴 Stock is down by {abs(change_percent):.2f}% from yesterday.")
 st.caption("🔄 Live price from Yahoo Finance (may differ slightly from Google due to real-time market updates).")
 if difference > 0:
  st.success(f"🚀 Kal ka Expected Target: ₹{prediction:.2f}")
