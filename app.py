@@ -531,7 +531,14 @@ else:
     st.error("❌ SELL")
 for reason in reasons:
     st.write(reason)
+    st.markdown("---")
+st.subheader("📊 Why AI Gave This Signal")
 
+st.write(f"📈 Trend Score: {trend_val:.2f}")
+st.write(f"⚡ Momentum: {momentum:.2f}")
+st.write(f"📊 Volume Trend: {volume_trend}")
+st.write(f"🎯 AI Confidence: {confidence}%")
+st.write(f"💡 Decision: {'BUY' if buy_score >= 50 else 'SELL'}")
 st.markdown("---")
 st.header("⚠️ AI Risk Score")
 
