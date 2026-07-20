@@ -328,6 +328,7 @@ if not name:
 
 # Ab ye purana wala code chalne do
 stock = yf.Ticker(name)
+company = stock.info
 info = stock.fast_info
 try:
     data = stock.history(period="1y")
@@ -620,6 +621,21 @@ else:
     st.warning("📉 Trend: Bearish")
 # --- 💰 SHAHID'S BILLIONAIRE RISK CALCULATOR ---
 st.markdown("---")
+st.subheader("🏢 Company Information")
+
+company = stock.info
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.write("🏢 Company:", company.get("longName", "N/A"))
+    st.write("🏭 Sector:", company.get("sector", "N/A"))
+    st.write("💼 Industry:", company.get("industry", "N/A"))
+
+with col2:
+    st.write("💰 Market Cap:", company.get("marketCap", "N/A"))
+    st.write("🌍 Country:", company.get("country", "N/A"))
+    st.write("🌐 Website:", company.get("website", "N/A"))
 st.header("💎 Shahid's Billionaire Strategy")
         
         # Checking if data exists to avoid any NameError
