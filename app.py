@@ -331,7 +331,7 @@ stock = yf.Ticker(name)
 info = stock.fast_info
 try:
     data = stock.history(period="1y")
-
+    news = stock.news
     if data.empty:
         st.error("No market data found. Please try again later.")
         st.stop()
@@ -658,6 +658,20 @@ st.write(f"### Predicted Return: ₹{profit:,.2f}")
 st.caption("Disclaimer: AI predictions are based on patterns, not guarantees.")
     # --- 🎯 TARGET LOGIC (Big Jump ₹543 to ₹789) ---
 st.subheader("🎯 AI Next Day Target")
+previous_close = float(data["Close"].iloc[-2])
+
+st.metric("📅 Previous Close", f"₹{previous_close:,.2f}")
+
+change = current_price - previous_close
+change_percent = (change / previous_close) * 100
+
+st.metric(
+    "📈 Today's Change",
+    f"{change:+.2f}",
+    f"{change_percent:+.2f}%"
+)
+
+st.caption("🔄 Live price from Yahoo Finance (may differ slightly from Google due to real-time market updates).")
 if difference > 0:
  st.success(f"🚀 Kal ka Expected Target: ₹{prediction:.2f}")
 else:
