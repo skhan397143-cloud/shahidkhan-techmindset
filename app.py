@@ -636,6 +636,19 @@ with col2:
     st.write("💰 Market Cap:", company.get("marketCap", "N/A"))
     st.write("🌍 Country:", company.get("country", "N/A"))
     st.write("🌐 Website:", company.get("website", "N/A"))
+    st.write("🌐 Website:", company.get("website", "N/A"))
+
+# 👇 YAHAN se naya code add hoga
+
+st.write("👥 Employees:", company.get("fullTimeEmployees", "N/A"))
+st.write("📈 52 Week High:", company.get("fiftyTwoWeekHigh", "N/A"))
+st.write("📉 52 Week Low:", company.get("fiftyTwoWeekLow", "N/A"))
+st.write("📊 Average Volume:", company.get("averageVolume", "N/A"))
+st.write("📈 P/E Ratio:", company.get("trailingPE", "N/A"))
+st.write("💹 EPS:", company.get("trailingEps", "N/A"))
+st.write("💵 Dividend Yield:", company.get("dividendYield", "N/A"))
+st.write("📅 Earnings Date:", company.get("earningsDate", "N/A"))
+
 st.header("💎 Shahid's Billionaire Strategy")
         
         # Checking if data exists to avoid any NameError
