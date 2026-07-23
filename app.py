@@ -652,6 +652,20 @@ st.write("🎯 Analyst Target:", company.get("targetMeanPrice", "N/A"))
 st.markdown("---")
 st.subheader("📖 Company Description")
 st.write(company.get("longBusinessSummary", "Description not available."))
+st.subheader("📄 Company Description")
+st.write(company.get("longBusinessSummary", "Description not available."))
+st.subheader("📄 Company Description")
+st.write(company.get("longBusinessSummary", "Description not available."))
+
+# 👇 YAHA NEXT FEATURES ADD HONGE
+
+st.write("⭐ CEO:", company.get("companyOfficers", "N/A"))
+st.write("💵 Revenue:", company.get("totalRevenue", "N/A"))
+st.write("📈 Profit:", company.get("netIncomeToCommon", "N/A"))
+st.write("🏦 Cash:", company.get("totalCash", "N/A"))
+st.write("💳 Debt:", company.get("totalDebt", "N/A"))
+st.write("📊 Analyst Rating:", company.get("recommendationKey", "N/A"))
+st.write("🎯 Target Price:", company.get("targetMeanPrice", "N/A"))
 
 st.header("💎 Shahid's Billionaire Strategy")
         
