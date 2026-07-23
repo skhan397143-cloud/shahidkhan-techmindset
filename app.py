@@ -648,6 +648,10 @@ st.write("📈 P/E Ratio:", company.get("trailingPE", "N/A"))
 st.write("💹 EPS:", company.get("trailingEps", "N/A"))
 st.write("💵 Dividend Yield:", company.get("dividendYield", "N/A"))
 st.write("📅 Earnings Date:", company.get("earningsDate", "N/A"))
+st.write("🎯 Analyst Target:", company.get("targetMeanPrice", "N/A"))
+st.markdown("---")
+st.subheader("📖 Company Description")
+st.write(company.get("longBusinessSummary", "Description not available."))
 
 st.header("💎 Shahid's Billionaire Strategy")
         
