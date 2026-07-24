@@ -656,6 +656,14 @@ st.subheader("📄 Company Description")
 st.write(company.get("longBusinessSummary", "Description not available."))
 st.subheader("📄 Company Description")
 st.write(company.get("longBusinessSummary", "Description not available."))
+st.markdown("----")
+st.subheader("📊 Financial Overview")
+
+st.write("💵 Revenue:", company.get("totalRevenue", "N/A"))
+st.write("📈 Profit:", company.get("netIncomeToCommon", "N/A"))
+st.write("🏦 Cash:", company.get("totalCash", "N/A"))
+st.write("💳 Debt:", company.get("totalDebt", "N/A"))
+st.write("⭐ CEO:", company.get("companyOfficers", [{}])[0].get("name", "N/A"))
 
 # 👇 YAHA NEXT FEATURES ADD HONGE
 
