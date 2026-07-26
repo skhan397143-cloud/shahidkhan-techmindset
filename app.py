@@ -675,6 +675,23 @@ st.write("🏦 Cash:", company.get("totalCash", "N/A"))
 st.write("💳 Debt:", company.get("totalDebt", "N/A"))
 st.write("📊 Analyst Rating:", company.get("recommendationKey", "N/A"))
 st.write("🎯 Target Price:", company.get("targetMeanPrice", "N/A"))
+st.markdown("---")
+st.subheader("📰 Latest Market News")
+
+try:
+    news = stock.news
+
+    if news:
+        for item in news[:5]:
+            st.write(f"📰 {item.get('title', 'No Title')}")
+            st.caption(item.get("publisher", "Unknown"))
+            st.write(item.get("link", ""))
+            st.markdown("---")
+    else:
+        st.info("No latest news available.")
+
+except Exception:
+    st.info("News not available.")
 
 st.header("💎 Shahid's Billionaire Strategy")
         
