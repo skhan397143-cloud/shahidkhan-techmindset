@@ -722,6 +722,30 @@ try:
 
 except:
     st.warning("Risk Score not available")
+st.markdown("---")
+st.subheader("🌍 Global Market Sentiment")
+
+try:
+    spy = yf.Ticker("SPY").history(period="5d")
+    qqq = yf.Ticker("QQQ").history(period="5d")
+
+    spy_change = ((spy["Close"].iloc[-1] - spy["Close"].iloc[0]) / spy["Close"].iloc[0]) * 100
+    qqq_change = ((qqq["Close"].iloc[-1] - qqq["Close"].iloc[0]) / qqq["Close"].iloc[0]) * 100
+
+    avg = (spy_change + qqq_change) / 2
+
+    if avg > 2:
+        sentiment = "🟢 Bullish"
+    elif avg < -2:
+        sentiment = "🔴 Bearish"
+    else:
+        sentiment = "🟡 Neutral"
+
+    st.metric("Market Sentiment", sentiment)
+    st.metric("5 Day Average Change", f"{avg:.2f}%")
+
+except:
+    st.info("Market sentiment not available.")
 
 st.header("💎 Shahid's Billionaire Strategy")
         
