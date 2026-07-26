@@ -692,6 +692,36 @@ try:
 
 except Exception:
     st.info("News not available.")
+st.markdown("---")
+st.subheader("🤖 AI Risk Score")
+
+# AI Risk Score
+try:
+    difference = abs((prediction - current_price) / current_price) * 100
+
+    if difference < 2:
+        risk_score = 15
+        risk_level = "🟢 Low Risk"
+
+    elif difference < 5:
+        risk_score = 45
+        risk_level = "🟡 Medium Risk"
+
+    elif difference < 10:
+        risk_score = 70
+        risk_level = "🟠 High Risk"
+
+    else:
+        risk_score = 90
+        risk_level = "🔴 Very High Risk"
+
+    st.metric("AI Risk Score", f"{risk_score}/100")
+    st.progress(risk_score / 100)
+
+    st.info(f"Risk Level: {risk_level}")
+
+except:
+    st.warning("Risk Score not available")
 
 st.header("💎 Shahid's Billionaire Strategy")
         
