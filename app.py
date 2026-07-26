@@ -1,6 +1,7 @@
 import streamlit as st
 import g4f
 import yfinance as yf
+import feedparser
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
