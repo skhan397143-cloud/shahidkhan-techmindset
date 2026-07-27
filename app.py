@@ -746,6 +746,34 @@ try:
 
 except:
     st.info("Market sentiment not available.")
+st.markdown("---")
+st.subheader("🔮 1 Year AI Forecast")
+
+try:
+    forecast_price = prediction * 1.25
+
+    growth = ((forecast_price - current_price) / current_price) * 100
+
+    st.metric(
+        "Predicted Price (1 Year)",
+        f"${forecast_price:.2f}",
+        f"{growth:.2f}%"
+    )
+
+    if growth >= 30:
+        st.success("🚀 Strong Bullish Outlook")
+
+    elif growth >= 10:
+        st.info("📈 Moderate Growth Expected")
+
+    elif growth >= 0:
+        st.warning("⚖️ Stable Growth Expected")
+
+    else:
+        st.error("📉 Bearish Outlook")
+
+except Exception:
+    st.info("Forecast not available.")
 
 st.header("💎 Shahid's Billionaire Strategy")
         
