@@ -683,9 +683,19 @@ try:
 
     if news:
         for item in news[:5]:
-            st.write(f"📰 {item.get('title', 'No Title')}")
-            st.caption(item.get("publisher", "Unknown"))
-            st.write(item.get("link", ""))
+            title = item.get("title")
+
+if not title:
+    title = item.get("content", {}).get("title", "No Title")
+
+publisher = item.get("publisher")
+
+if not publisher:
+    publisher = item.get("content", {}).get("provider", {}).get("displayName", "Unknown")
+
+st.write(f"📰 {title}")
+st.caption(publisher)
+st.write(item.get("link", ""))
             st.markdown("---")
     else:
         st.info("No latest news available.")
