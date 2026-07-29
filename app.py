@@ -807,14 +807,13 @@ if st.button("🧠 Analyze with AI Brain"):
             Answer like a professional Wall Street analyst.
             """
 
-            response = client.chat.completions.create(
-                model="gpt-4.1-mini",
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
-            )
+           user_question = st.text_input(
+    "Ask AI about this company",
+    placeholder="Example: Should Tesla expand in India?"
+)
 
-            st.success(response.choices[0].message.content)
+if st.button("🧠 Analyze with AI Brain"):
+    st.write("Analyzing...")
 
 user_question = st.text_input(
     "Ask AI about this company",
