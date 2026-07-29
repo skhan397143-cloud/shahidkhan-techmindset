@@ -807,7 +807,7 @@ if st.button("🧠 Analyze with AI Brain"):
             Answer like a professional Wall Street analyst.
             """
 
-           user_question = st.text_input(
+    user_question = st.text_input(
     "Ask AI about this company",
     placeholder="Example: Should Tesla expand in India?"
 )
