@@ -838,8 +838,7 @@ if st.button("🧠 Analyze Company"):
         4. Future
         5. Final opinion
         """
-
-       st.header("💎 Shahid's Billionaire Strategy")
+st.header("💎 Shahid's Billionaire Strategy")
         
         # Checking if data exists to avoid any NameError
 if 'prediction' in locals() and 'current_price' in locals():
