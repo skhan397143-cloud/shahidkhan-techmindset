@@ -7,6 +7,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression 
 import requests
+import textwrap
 NEWS_API_KEY = "84a3d22fbd50413abf89a31e60ae1c69"
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -786,8 +787,59 @@ try:
 
 except Exception:
     st.info("Forecast not available.")
+   
+    st.subheader("🧠Ai brain Assinstent")
+user_question = st.text_input("💬 Ask AI about this stock")
 
-st.header("💎 Shahid's Billionaire Strategy")
+if st.button("🧠 Analyze with AI Brain"):
+    if user_question:
+        with st.spinner("Thinking..."):
+
+            prompt = f"""
+            Stock: {ticker}
+
+            Current Price: {current_price}
+            AI Prediction: {prediction}
+
+            User Question:
+            {user_question}
+
+            Answer like a professional Wall Street analyst.
+            """
+
+            response = client.chat.completions.create(
+                model="gpt-4.1-mini",
+                messages=[
+                    {"role": "user", "content": prompt}
+                ]
+            )
+
+            st.success(response.choices[0].message.content)
+
+user_question = st.text_input(
+    "Ask AI about this company",
+    placeholder="Example: Should Tesla expand in India?"
+)
+
+if st.button("🧠 Analyze Company"):
+    if user_question:
+        st.info("🤖 AI Brain is thinking...")
+
+        prompt = f"""
+        Company: {selected_stock}
+
+        User Question:
+        {user_question}
+
+        Explain:
+        1. Business
+        2. Products
+        3. Risks
+        4. Future
+        5. Final opinion
+        """
+
+       st.header("💎 Shahid's Billionaire Strategy")
         
         # Checking if data exists to avoid any NameError
 if 'prediction' in locals() and 'current_price' in locals():
