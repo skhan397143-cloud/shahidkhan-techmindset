@@ -814,12 +814,6 @@ if st.button("🧠 Analyze with AI Brain"):
 
     st.write("Analyzing...")
 
-
-
-if st.button("🧠 Analyze Company"):
-    if user_question:
-        st.info("🤖 AI Brain is thinking...")
-
         prompt = f"""
         Company: {ticker}
 
