@@ -836,7 +836,7 @@ if st.button("🧠 Analyze Company"):
         4. Future
         5. Final opinion        
         """
- st.subheader("🧠 AI Brain Assistant")
+st.subheader("🧠 AI Brain Assistant")
 
 st.info("""
 🤖 AI Brain can help you with:
