@@ -821,7 +821,7 @@ if st.button("🧠 Analyze Company"):
         st.info("🤖 AI Brain is thinking...")
 
         prompt = f"""
-        Company: {selected_stock}
+        Company: {ticker}
 
         User Question:
         {user_question}
