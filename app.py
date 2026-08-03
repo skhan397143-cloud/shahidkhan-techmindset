@@ -834,8 +834,20 @@ if st.button("🧠 Analyze Company"):
         2. Products
         3. Risks
         4. Future
-        5. Final opinion
+        5. Final opinion        
         """
+ st.subheader("🧠 AI Brain Assistant")
+
+st.info("""
+🤖 AI Brain can help you with:
+
+• Company Analysis
+• Risk Analysis
+• Long-term Investment
+• Short-term Trading
+• Future Growth
+""")
+
 st.header("💎 Shahid's Billionaire Strategy")
         
         # Checking if data exists to avoid any NameError
