@@ -814,18 +814,18 @@ if st.button("🧠 Analyze with AI Brain"):
 
     st.write("Analyzing...")
 
-        prompt = f"""
-        Company: {ticker}
+    prompt = f"""
+    Company: {ticker}
 
-        User Question:
-        {user_question}
+    User Question:
+    {user_question}
 
-        Explain:
-        1. Business
-        2. Products
-        3. Risks
-        4. Future
-        5. Final opinion        
+    Explain:
+    1. Business
+    2. Products
+    3. Risks
+    4. Future
+    5. Final opinion        
         """
 st.subheader("🧠 AI Brain Assistant")
 
