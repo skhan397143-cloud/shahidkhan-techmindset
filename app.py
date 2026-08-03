@@ -788,7 +788,6 @@ try:
 except Exception:
     st.info("Forecast not available.")
    
-    st.subheader("🧠Ai brain Assinstent")
 user_question = st.text_input("💬 Ask AI about this stock")
 
 if st.button("🧠 Analyze with AI Brain"):
