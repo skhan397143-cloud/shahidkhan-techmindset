@@ -814,10 +814,7 @@ if st.button("🧠 Analyze with AI Brain"):
 
     st.write("Analyzing...")
 
-user_question = st.text_input(
-    "Ask AI about this company",
-    placeholder="Example: Should Tesla expand in India?"
-)
+
 
 if st.button("🧠 Analyze Company"):
     if user_question:
