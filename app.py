@@ -831,6 +831,9 @@ st.subheader("🧠 AI Brain Assistant")
 st.write("🤖 AI Brain can help you with:")
 
 
+st.write("""
+🤖 AI Brain can help you with:
+
 • Company Analysis
 • Risk Analysis
 • Long-term Investment
