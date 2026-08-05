@@ -813,10 +813,6 @@ if st.button("🧠 Analyze with AI Brain"):
 
             st.write(response)
 
-            Answer like a professional Wall Street analyst.
-            """
-
-   
     prompt = f"""
     Company: {ticker}
 
