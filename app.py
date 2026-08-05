@@ -802,15 +802,16 @@ if st.button("🧠 Analyze with AI Brain"):
 
             User Question:
             {user_question}
-
+            """
     response = g4f.ChatCompletion.create(
     model="gpt-4o-mini",
-    messages=f"{prompt}"
-)
+    messages=[
+    {"role": "user", "content": prompt}
+]
 
-   st.write(response)
+    st.write(response)
 
-   Answer like a professional Wall Street analyst.
+    Answer like a professional Wall Street analyst.
     """
 
    
