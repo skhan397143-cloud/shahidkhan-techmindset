@@ -830,8 +830,8 @@ if st.button("🧠 Analyze with AI Brain"):
         """
 st.subheader("🧠 AI Brain Assistant")
 
-st.info("""
-🤖 AI Brain can help you with:
+st.write("🤖 AI Brain can help you with:")
+
 
 • Company Analysis
 • Risk Analysis
