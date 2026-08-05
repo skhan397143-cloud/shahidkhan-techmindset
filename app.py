@@ -802,9 +802,10 @@ if st.button("🧠 Analyze with AI Brain"):
 
             User Question:
             {user_question}
-   response = g4f.ChatCompletion.create(
-    model="gpt-4.1-mini",
-    messages=[{"role": "user", "content": prompt}]
+
+    response = g4f.ChatCompletion.create(
+    model="gpt-4o-mini",
+    messages=f"{prompt}"
 )
 
    st.write(response)
