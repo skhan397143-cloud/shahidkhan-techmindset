@@ -1,5 +1,5 @@
 import streamlit as st
-import g4f
+import os from google import genai
 import yfinance as yf
 import feedparser
 import numpy as np
@@ -789,59 +789,39 @@ except Exception:
     st.info("Forecast not available.")
    
 user_question = st.text_input("💬 Ask AI about this stock")
-
 if st.button("🧠 Analyze with AI Brain"):
     if user_question:
         with st.spinner("Thinking..."):
+            try:
+                client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-            prompt = f"""
-            Stock: {ticker}
+                prompt = f"""
+You are an AI stock-analysis assistant.
 
-            Current Price: {current_price}
-            AI Prediction: {prediction}
+Stock: {ticker}
+Current Price: {current_price}
+AI Prediction: {prediction}
 
-            User Question:
-            {user_question}
-            """
+User Question:
+{user_question}
 
-            response = g4f.ChatCompletion.create(
-            model="gpt-4o-mini",
-            messages=[
-            {"role": "user", "content": prompt}
-    ]
-)
+Give a clear educational explanation.
+Do not present your response as guaranteed financial advice.
+"""
 
-            st.write(response)
+                response = client.models.generate_content(
+                    model="gemini-3.6-flash",
+                    contents=prompt
+                )
 
-    prompt = f"""
-    Company: {ticker}
+                st.write(response.text)
 
-    User Question:
-    {user_question}
+            except Exception as e:
+                st.error(f"AI Brain error: {e}")
+    else:
+        st.warning("Please enter a question first.")
 
-    Explain:
-    1. Business
-    2. Products
-    3. Risks
-    4. Future
-    5. Final opinion        
-        """
-st.subheader("🧠 AI Brain Assistant")
-
-st.write("🤖 AI Brain can help you with:")
-
-
-st.write("""
-🤖 AI Brain can help you with:
-
-• Company Analysis
-• Risk Analysis
-• Long-term Investment
-• Short-term Trading
-• Future Growth
-""")
-
-st.header("💎 Shahid's Billionaire Strategy")
+        st.header("💎 Shahid's Billionaire Strategy")
         
         # Checking if data exists to avoid any NameError
 if 'prediction' in locals() and 'current_price' in locals():
