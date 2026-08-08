@@ -1,5 +1,6 @@
 import streamlit as st
-import os from google import genai
+import os
+from google import genai
 import yfinance as yf
 import feedparser
 import numpy as np
