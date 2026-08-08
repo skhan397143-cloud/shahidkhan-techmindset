@@ -1,10 +1,9 @@
 streamlit
-g4f
 yfinance
 numpy
 pandas
 plotly
 scikit-learn
 feedparser
-
+google-genai
 
