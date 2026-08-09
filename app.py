@@ -790,37 +790,139 @@ except Exception:
     st.info("Forecast not available.")
    
 user_question = st.text_input("💬 Ask AI about this stock")
+# ==============================
+# LOCAL AI BRAIN - NO API KEY
+# ==============================
+
+st.subheader("🧠 Local AI Brain")
+
+user_question = st.text_input(
+    "💬 Ask AI about this stock"
+)
+
 if st.button("🧠 Analyze with AI Brain"):
-    if user_question:
-        with st.spinner("Thinking..."):
-            try:
-                client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-                prompt = f"""
-You are an AI stock-analysis assistant.
+    if not user_question.strip():
+        st.warning("Pehle apna question likho.")
+    else:
 
-Stock: {ticker}
-Current Price: {current_price}
-AI Prediction: {prediction}
+        question = user_question.lower()
 
-User Question:
-{user_question}
+        # Basic calculations
+        change = prediction - current_price
+        change_percent = (change / current_price) * 100
 
-Give a clear educational explanation.
-Do not present your response as guaranteed financial advice.
+        # Determine trend
+        if change_percent > 2:
+            outlook = "Bullish"
+        elif change_percent < -2:
+            outlook = "Bearish"
+        else:
+            outlook = "Neutral"
+
+        # Local response engine
+        if "5 year" in question or "long term" in question:
+            answer = f"""
+### 📊 Long-Term Analysis
+
+**Stock:** {ticker}
+
+**Current Price:** ₹{current_price:.2f}
+
+**Model Prediction:** ₹{prediction:.2f}
+
+**Model Outlook:** {outlook}
+
+The current model suggests a {outlook.lower()} short-term direction.
+
+For a 5-year decision, this prediction alone is NOT enough.
+You should also examine company growth, revenue, debt,
+profitability, valuation and the broader market.
+
+⚠️ This is an educational analysis, not financial advice.
 """
 
-                response = client.models.generate_content(
-                    model="gemini-3.6-flash",
-                    contents=prompt
-                )
+        elif "buy" in question:
+            answer = f"""
+### 🔎 Buy Analysis
 
-                st.write(response.text)
+**Current Price:** ₹{current_price:.2f}
 
-            except Exception as e:
-                st.error(f"AI Brain error: {e}")
-    else:
-        st.warning("Please enter a question first.")
+**Predicted Price:** ₹{prediction:.2f}
+
+**Expected Model Change:** {change_percent:.2f}%
+
+Model outlook: **{outlook}**
+
+The model is only one signal. A buy decision should not be
+based on this prediction alone.
+
+⚠️ Educational analysis only — not financial advice.
+"""
+
+        elif "sell" in question:
+            answer = f"""
+### 🔎 Sell Analysis
+
+**Current Price:** ₹{current_price:.2f}
+
+**Predicted Price:** ₹{prediction:.2f}
+
+**Expected Model Change:** {change_percent:.2f}%
+
+Model outlook: **{outlook}**
+
+A sell decision should consider risk, valuation, fundamentals
+and your investment horizon rather than one prediction.
+
+⚠️ Educational analysis only — not financial advice.
+"""
+
+        elif "why" in question or "reason" in question:
+            answer = f"""
+### 🧠 Model Explanation
+
+The model currently sees:
+
+• Current price: ₹{current_price:.2f}
+• Prediction: ₹{prediction:.2f}
+• Expected movement: {change_percent:.2f}%
+• Outlook: {outlook}
+
+These values come from the indicators and prediction logic
+already running inside this application.
+"""
+
+        else:
+            answer = f"""
+### 🤖 Local AI Brain
+
+I analysed your question:
+
+**"{user_question}"**
+
+Stock: **{ticker}**
+
+Current Price: **₹{current_price:.2f}**
+
+Prediction: **₹{prediction:.2f}**
+
+Expected Change: **{change_percent:.2f}%**
+
+Current Model Outlook: **{outlook}**
+
+Try asking:
+
+• Should I buy this stock?
+• Should I sell this stock?
+• What is the long term outlook?
+• Why is the prediction bullish?
+• What is the expected movement?
+
+⚠️ Educational analysis only — not financial advice.
+"""
+
+        st.markdown(answer)
 
         st.header("💎 Shahid's Billionaire Strategy")
         
