@@ -796,10 +796,6 @@ user_question = st.text_input("💬 Ask AI about this stock")
 
 st.subheader("🧠 Local AI Brain")
 
-user_question = st.text_input(
-    "💬 Ask AI about this stock"
-)
-
 if st.button("🧠 Analyze with AI Brain"):
 
     if not user_question.strip():
