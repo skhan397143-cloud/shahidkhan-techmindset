@@ -919,8 +919,20 @@ Try asking:
 """
 
         st.markdown(answer)
+        st.subheader("📊 Portfolio Tracker")
 
-        st.header("💎 Shahid's Billionaire Strategy")
+qty = st.number_input("Shares", 1, 10000, 1)
+buy_price = st.number_input("Buy Price", value=float(current_price))
+
+invested = qty * buy_price
+current_value = qty * current_price
+profit = current_value - invested
+
+st.metric("Investment", f"₹{invested:.2f}")
+st.metric("Current Value", f"₹{current_value:.2f}")
+st.metric("Profit/Loss", f"₹{profit:.2f}")
+
+st.header("💎 Shahid's Billionaire Strategy")
         
         # Checking if data exists to avoid any NameError
 if 'prediction' in locals() and 'current_price' in locals():
