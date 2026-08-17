@@ -625,7 +625,7 @@ else:
 st.markdown("---")
 st.subheader("🏢 Company Information")
 
-company = {"shortname"; name}
+company = {"shortname": name}
 
 col1, col2 = st.columns(2)
 
