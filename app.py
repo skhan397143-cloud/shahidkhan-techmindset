@@ -329,10 +329,9 @@ if not name:
     st.info("Bhai, pehle 'TCS' ya 'RELIANCE' jaisa koi stock name dalo upar!")
     st.stop()
 
-# Ab ye purana wala code chalne do
 stock = yf.Ticker(name)
-company = stock.info
-info = stock.fast_info
+data = stock.history(period="1y")
+current_price = float(data["Close"].iloc[-1])
 try:
     data = stock.history(period="1y")
     news = stock.news
